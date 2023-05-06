@@ -1,0 +1,13 @@
+diff --git a/tube.c b/tube.c
+index 2f9f8ab..4cc8103 100644
+--- a/tube.c
++++ b/tube.c
+@@ -12,7 +12,7 @@ make_tube(const char *name)
+     if (!t)
+         return NULL;
+ 
+-    strncpy(t->name, name, MAX_TUBE_NAME_LEN);
++    strncpy(t->name, name, MAX_TUBE_NAME_LEN - 1);
+     if (t->name[MAX_TUBE_NAME_LEN - 1] != '\0') {
+         t->name[MAX_TUBE_NAME_LEN - 1] = '\0';
+         twarnx("truncating tube name");

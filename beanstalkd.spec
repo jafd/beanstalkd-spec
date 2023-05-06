@@ -6,18 +6,17 @@
 %define beanstalkd_binlogdir %{beanstalkd_home}/binlog
 
 Name:           beanstalkd
-Version:        1.10
-Release:        19%{?dist}
+Version:        1.13
+Release:        1%{?dist}
 Summary:        A simple, fast work-queue service
 
 License:        MIT
 URL:            http://kr.github.io/%{name}/
-Source0:        https://github.com/kr/%{name}/archive/v%{version}.tar.gz
+Source0:        https://github.com/beanstalkd/%{name}/archive/refs/tags/v%{version}.tar.gz
 Source1:        %{name}.service
 Source2:        %{name}.sysconfig
 
-Patch1:         beanstalkd-1.10-warnings.patch
-Patch2:         beanstalkd-1.10-mkdtemp.patch
+Patch0:         beanstalkd-1.13-strncpy.patch
 
 BuildRequires:  systemd gcc gcc-c++
 BuildRequires: make
@@ -85,7 +84,7 @@ fi
 
 
 %files
-%doc README doc/protocol.txt
+%doc README.md doc/protocol.txt
 %license LICENSE
 %{_unitdir}/%{name}.service
 %{_bindir}/%{name}
@@ -96,6 +95,9 @@ fi
 
 
 %changelog
+* Sat May  6 2023 Yaroslav Fedevych <yaroslav@fedevych.name> - 1.13-1
+- Build new upstream version
+
 * Wed Jan 18 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1.10-19
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
